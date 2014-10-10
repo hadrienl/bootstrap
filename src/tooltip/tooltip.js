@@ -273,6 +273,16 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
               }
             });
 
+            /**
+             * Redraw tooltip after its text content change.
+             */
+            attrs.$observe('tooltip', function (val) {
+              if (tooltip) {
+                removeTooltip();
+                $timeout(show);
+              }
+            });
+
             attrs.$observe( prefix+'Title', function ( val ) {
               ttScope.title = val;
             });
